@@ -1,0 +1,5 @@
+/vendor/
+/Maildir/
+/public_html/attachments/
+/.idea/
+.env

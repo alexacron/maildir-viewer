@@ -1,0 +1,24 @@
+<?php include 'views/header.html'; ?>
+<h1>Inbox</h1>
+
+<ul>
+<?php
+ foreach ($allMails as $mail) { ?>
+     <li><a href="view?id=<?php echo $mail['id']; ?>"><?php echo $mail['subject']; ?></a> — <i><?php echo $mail['from']; ?></i> <small>(<?php echo $mail['date']; ?>)</small></li>
+<?php } ?>
+</ul>
+
+<nav>
+<ul class="pagination">
+    <li class="page-item">
+     <?php if ($pagination['page'] > 1) { ?>
+         <a href="index?page=<?php echo $pagination['page'] - 1; ?>">Previous</a>
+        <?php } else { echo 'Previous'; } ?></li>
+    <li class="page-item">
+     <?php if ($pagination['page'] < $pagination['total']) { ?>
+         <a href="index?page=<?php echo $pagination['page'] + 1; ?>">Next</a>
+        <?php } else { echo 'Next'; } ?></li>
+</ul>
+</nav>
+
+<?php include 'views/footer.html'; ?>
