@@ -11,7 +11,10 @@ A lightweight web-based interface for viewing and managing email accounts config
 
 ## Prerequisites
 
-- PHP 7.4 or higher
+- PHP 7.4 or higher with the following extensions:
+  - mailparse (for email parsing)
+  - json
+  - mbstring
 - Composer (PHP package manager)
 - Web server (Apache/Nginx) with PHP support
 - Maildir-formatted email accounts

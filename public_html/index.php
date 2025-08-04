@@ -41,7 +41,7 @@ if (file_exists(dirname(__DIR__) . '/.env')) {
 
 $appEnv = getenv('APP_ENV') ?: 'dev';
 if ('dev' === $appEnv) {
-    error_reporting('E_ALL & ~E_DEPRECATED & ~E_STRICT');
+    error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
     ini_set('display_errors', 1);
     $maildir = dirname(__DIR__) . '/Maildir/new';
 }else {

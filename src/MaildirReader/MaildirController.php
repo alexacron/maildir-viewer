@@ -44,10 +44,12 @@ class MaildirController
 
         $page = $_GET['page'] ?? 1;
         $perPage = $_GET['per_page'] ?? 20;
+        $allMailDates = $maildirService->getAllMailDates();
         $allMails = $maildirService->getMails($page, $perPage);
 
         echo $this->renderView('index', [
             'allMails' => $allMails,
+            'allMailDates' => $allMailDates,
             'pagination' => [
                 'page' => $page,
                 'limit' => $perPage,
@@ -76,9 +78,26 @@ class MaildirController
         ]);
     }
 
+    public function date()
+    {
+        $maildirService = new MaildirService($this->config);
+        $date = $_GET['date'] ?? '';
+
+        if(!$date) {
+            http_response_code(404);
+            exit("Date not found.");
+        }
+
+        $allMails = $maildirService->getMailsByDate($date);
+        echo $this->renderView('date', [
+            'date' => $date,
+            'allMails' => $allMails,
+            ]);
+    }
+
     private function renderView(string $string, array $array)
     {
-        $template = file_get_contents(__DIR__ . '/views/' . $string . '.html');
+        $template = file_get_contents(__DIR__ . '/views/' . $string . '.html.php');
 
         ob_start();
         extract($array);
